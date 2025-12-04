@@ -1,0 +1,208 @@
+<!DOCTYPE html> 
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buku Tamu @BosLuki</title>
+
+<style>
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #05070a, #0d1117);
+  color: #e8f8ff;
+  margin: 0;
+  padding: 24px;
+}
+
+/* ---------- FORM UI ---------- */
+#guestForm {
+  background: rgba(255,255,255,0.05);
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  animation: fadeIn 0.6s ease;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  transition: .25s;
+  font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+  border: 1px solid #00ffe7;
+  box-shadow: 0 0 12px rgba(0,255,230,0.4);
+  outline: none;
+}
+
+/* ---------- BUTTON ---------- */
+button {
+  padding: 10px 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: .25s;
+}
+
+#kirim {
+  background: #00ffea;
+  color: #00363a;
+}
+#kirim:hover {
+  transform: scale(1.06);
+  background:#16ffe0;
+}
+
+.hapus {
+  background:#ff003c;
+  color:#fff;
+}
+.hapus:hover {
+  transform: scale(1.08);
+  background:#ff275b;
+}
+
+/* ---------- TABEL UI ---------- */
+#tabel {
+  width: 100%;
+  font-size: 0.95rem;
+  margin-top: 14px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+#tabel th {
+  background: rgba(0, 255, 230, 0.12);
+  padding: 10px 8px;
+  font-weight: 700;
+  color:#0affec;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  text-align: left;
+}
+
+#tabel td {
+  padding: 9px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+#tabel tr {
+  transition: .25s ease;
+}
+
+#tabel tr:hover {
+  background: rgba(0, 255, 230, 0.06);
+  transform: scale(1.008);
+}
+
+/* ---------- ANIM ---------- */
+@keyframes fadeIn {
+  from { opacity:0; transform: translateY(12px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center;margin-bottom:6px;font-weight:800;color:#00ffe7;">
+  📘 Buku Tamu BOSLUKI
+</h2>
+
+<p style="text-align:center;color:#9fdcf0;margin-bottom:22px;">
+  Isilah & dukungan terbaik untuk @BosLuki ✨dan HARAP MAKLUMI
+</p>
+
+<form id="guestForm">
+  <input type="text" id="nama" placeholder="Nama lengkap" required>
+  <input type="text" id="instansi" placeholder="Instansi / Sekolah / Organisasi" required>
+  <input type="email" id="email" placeholder="Email aktif" required>
+  <textarea id="pesan" placeholder="Pesan atau kesan Anda" required></textarea>
+  <button type="submit" id="kirim">KIRIM PESAN</button>
+</form>
+
+<hr style="margin:30px 0;border: 0.5px solid rgba(255,255,255,0.1);">
+
+<h3 style="color:#00ffe7;font-weight:700;">Riwayat Buku Tamu:</h3>
+
+<table id="tabel">
+  <tr>
+    <th>No</th>
+    <th>Nama</th>
+    <th>Instansi</th>
+    <th>Email</th>
+    <th>Pesan</th>
+    <th>Tanggal</th>
+    <th>Aksi</th>
+  </tr>
+</table>
+
+<script>
+let bukuTamu = JSON.parse(localStorage.getItem('bukutamu')) || [];
+
+document.getElementById("guestForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let data = {
+    nama: document.getElementById("nama").value,
+    instansi: document.getElementById("instansi").value,
+    email: document.getElementById("email").value,
+    pesan: document.getElementById("pesan").value,
+    tanggal: new Date().toLocaleString()
+  };
+
+  bukuTamu.push(data);
+  localStorage.setItem('bukutamu', JSON.stringify(bukuTamu));
+  renderTabel();
+  e.target.reset();
+});
+
+function renderTabel(){
+  let tabel = document.getElementById("tabel");
+  tabel.innerHTML = `
+    <tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Instansi</th>
+      <th>Email</th>
+      <th>Pesan</th>
+      <th>Tanggal</th>
+      <th>Aksi</th>
+    </tr>
+  `;
+
+  bukuTamu.forEach((data,i)=> {
+    let row = tabel.insertRow(-1);
+    row.style.animation = "fadeIn .4s ease";
+    row.innerHTML = `
+      <td>${i+1}</td>
+      <td>${data.nama}</td>
+      <td>${data.instansi}</td>
+      <td>${data.email}</td>
+      <td>"${data.pesan}"</td>
+      <td>${data.tanggal}</td>
+      <td><button class="hapus" onclick="hapus(${i})">✖</button></td>
+    `;
+  });
+}
+
+function hapus(i){
+  bukuTamu.splice(i, 1);
+  localStorage.setItem('bukutamu', JSON.stringify(bukuTamu));
+  renderTabel();
+}
+
+renderTabel();
+</script>
+
+</body>
+</html>

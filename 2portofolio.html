@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Perjalanan Sekolah Saya — Timeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f7fb;
+    --muted:#6b7280;
+    --card-bg: rgba(255,255,255,0.6);
+    --card-border: rgba(255,255,255,0.8);
+    --line:#e6eef7;
+    --accent1:#4f46e5;
+    --accent2:#06b6d4;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:var(--bg);
+    color:#07102a;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1100px;margin:36px auto;padding:24px;}
+
+  h1{
+    margin:0 0 6px;
+    font-size:2rem;
+    font-weight:800;
+    text-align:center;
+  }
+  .lead{ text-align:center;color:var(--muted); margin-bottom:28px; }
+
+  /* TIMELINE area */
+  .timeline{
+    position:relative;
+    padding:30px 0 60px;
+  }
+
+  /* vertical line (center) */
+  .timeline-line{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:6px;
+    top:0;
+    bottom:0;
+    background:linear-gradient(#fff, #fff);
+    border-radius:6px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.03) inset;
+  }
+  /* subtle background track */
+  .timeline-line::after{
+    content:"";
+    position:absolute;left:50%;transform:translateX(-50%);
+    width:6px;top:0;height:100%;
+    background:var(--line);border-radius:6px;
+  }
+
+  /* progress fill */
+  .timeline-progress{
+    position:absolute;left:50%;transform:translateX(-50%);
+    width:6px;top:0;height:0%;
+    background:linear-gradient(180deg,var(--accent2),var(--accent1));
+    border-radius:6px;
+    transition:height .12s linear;
+    z-index:2;
+  }
+
+  /* timeline item general */
+  .item{
+    position:relative;
+    width:48%;
+    margin:44px 0;
+    display:flex;
+    align-items:flex-start;
+  }
+  .item.left{ margin-right:52%; padding-right:20px; justify-content:flex-end; }
+  .item.right{ margin-left:52%; padding-left:20px; justify-content:flex-start; }
+
+  /* point (circle icon) placed on center line */
+  .point{
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:54px;height:54px;border-radius:50%;
+    background:white;border:1px solid #eef2f7;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 22px rgba(12,22,40,0.06);
+    z-index:4;
+  }
+  .point svg{ width:22px;height:22px;color:var(--accent1); }
+
+  /* card style (glass) */
+  .card{
+    background:var(--card-bg);
+    border-radius:14px;
+    padding:20px;
+    width:100%;
+    border:1px solid rgba(255,255,255,0.9);
+    box-shadow:0 10px 30px rgba(12,22,40,0.06);
+    backdrop-filter: blur(8px) saturate(120%);
+    transform:translateY(0);
+    transition:transform .36s cubic-bezier(.2,.9,.2,1), box-shadow .36s;
+    opacity:0; /* reveal handled by JS */
+    will-change:transform,opacity;
+  }
+  .card.in-view{ opacity:1; transform:translateY(0); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.9,.2,1); }
+
+  .year{ display:block; font-weight:700; font-size:.87rem; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:.6px; }
+  h4{ margin:4px 0 8px; font-size:1.05rem; color:#07102a; }
+  p{ margin:0;color:#334155; line-height:1.5; font-size:.95rem; white-space:pre-wrap; }
+
+  .tags{ margin-top:12px; }
+  .tag{ display:inline-block; background:#fff; color:#334155; padding:6px 10px; border-radius:999px; margin-right:6px; font-size:.78rem; border:1px solid rgba(12,22,40,0.04); }
+
+  /* hover polish */
+  .card:hover{ transform:translateY(-6px); box-shadow:0 22px 56px rgba(12,22,40,0.10); }
+
+  /* small screens: single column, line left */
+  @media (max-width:880px){
+    .item, .item.left, .item.right { width:100%; margin:20px 0 40px; padding:0 0 0 64px; }
+    .item.left, .item.right{ justify-content:flex-start; margin-right:0;margin-left:0;}
+    .timeline-line, .timeline-progress{ left:28px; transform:none; }
+    .point{ left:28px; transform:translateY(-50%); }
+  }
+
+  /* accessibility prefs */
+  @media (prefers-reduced-motion: reduce){
+    .card, .timeline-progress, .card.in-view { transition:none!important; animation:none!important; }
+  }
+
+  /* tiny helper */
+  .meta-compact{ color:var(--muted); font-size:.86rem; margin-top:8px; }
+</style>
+</head>
+<body>
+    
+      <section class="journey" id="journeySchool">
+    <h2>Perjalanan Sekolah Saya</h2>
+<div class="timeline">
+
+    <div class="timeline-item right">
+        <div class="content">
+            <span class="year green">2011 - 2014</span>
+            <h4>Masa PAUD / TK / TPA & Perjalanan Belajar Awal</h4>
+            <p>
+            Pada masa ini saya belajar membaca, menulis, menjaga adik, dan mulai mengenal rutinitas belajar. 
+            Saya juga aktif berolahraga dan mengikuti aktivitas pendidikan dasar.
+            <br><br>
+            <strong>Contoh rutinitas harian:</strong><br>
+            <strong>Pagi:</strong> Bangun tidur, sholat, mandi, sarapan, berangkat sekolah dan pulang sekolah.<br>
+            <strong>Siang:</strong> Makan siang, beribadah, bermain / olahraga ringan.<br>
+            <strong>Sore:</strong> Bersantai / kegiatan rumah & keluarga.
+            </p>
+            <div class="tags"><span>TK/PAUD/TPA</span><span>Mengenal Belajar</span><span>Sholat</span></div>
+        </div>
+    </div>
+
+    <div class="timeline-icon">⌘</div>
+
+    <div class="timeline-item left">
+        <div class="content">
+            <span class="year blue">2014 - 2020</span>
+            <h4>Masa SD & Mulai Menemukan Minat</h4>
+            <p>
+            Pada masa SD saya banyak belajar tentang kehidupan: berbagi, sedekah, kesabaran, menghadapi bully, pernah berbuat kesalahan, dan terus berkembang melalui pembiasaan menghafal, membaca, serta menulis.
+            <br><br>
+            <strong>Rutinitas harian:</strong><br>
+            <strong>Pagi:</strong> Sholat subuh, mandi, sarapan, berangkat sekolah/kerja orang tua,bersih-bersih didekat rumah,dan, belajar.<br>
+            <strong>Siang:</strong> Makan siang, kegiatan olahraga, beribadah waktu dzuhur ,dan, main.<br>
+            <strong>Sore:</strong> Waktu santai / aktivitas sosial, beribadah waktu ashar & rumah tangga.<br>
+            <strong>Malam:</strong> Makan malam bersama keluarga, sholat maghrib & shalat isya,main, belajar, lalu istirahat.
+            <br><br>
+            Masa SD ini juga membentuk karakter saya melalui pembiasaan observasi sosial, interaksi dengan teman, dan kebiasaan membantu keluarga.
+            </p>
+            <div class="tags"><span>Edukasi</span><span>Kemandirian</span><span>Menghafal & Setoran</span><span>Pengembangan Diri</span><span>Kegiatan Sosial</span></div>
+        </div>
+    </div>
+
+    <div class="timeline-icon">↔︎</div>
+
+    <div class="timeline-item right">
+        <div class="content">
+            <span class="year purple">2021 - 2023</span>
+            <h4>Masa SMP & Mulai Berkembang Otak</h4>
+            <p>
+            Pada fase SMP saya mulai menemukan ketertarikan pada IT dan mengikuti ekstrakurikuler seperti pencak silat. Saya tetap belajar nilai-nilai berbagi, ketahanan mental, kesabaran, dan disiplin diri.
+            <br><br>
+            <strong>Rutinitas harian:</strong><br>
+            <strong>Pagi:</strong> Sholat subuh, mandi, sarapan, berangkat sekolah dan lainnya.<br>
+            <strong>Siang:</strong> Makan siang, sholat dzuhur, kegiatan pendidikan dan lainnya.<br>
+            <strong>Sore:</strong> Olahraga / aktivitas ringan, sholat ashar & istirahat dan lainnya.<br>
+            <strong>Malam:</strong> Makan, beribadah waktu maghrib & beribadah waktu isya, belajar, dan tidur.
+            <br><br>
+            Pada masa ini saya tumbuh menjadi pribadi yang lebih memahami tanggung jawab, mulai memahami hubungan sosial, serta menghargai usaha dan proses belajar.
+            </p>
+            <div class="tags"><span>Edukasi</span><span>Kemandirian</span><span>IT</span><span>Pencak Silat</span><span>Pengembangan Diri</span></div>
+        </div>
+    </div>
+
+    <div class="timeline-icon">✦</div>
+
+    <div class="timeline-item left">
+        <div class="content">
+            <span class="year orange">2024 - 2025</span>
+            <h4>Masa SMA / Pondok Beasiswa & Pendewasaan Mental</h4>
+            <p>
+            Pada tahap ini saya mulai hidup lebih disiplin, mandiri dan matang secara pribadi. Saya belajar di pondok dengan pendidikan agama dan akademik sekaligus, mulai menekuni IT lebih dalam, memahami sosial digital seperti YouTube, TikTok, AI, dan masuk ke dunia komunitas.
+            <br><br>
+            <strong>Rutinitas harian:</strong><br>
+            <strong>Pagi:</strong> Sholat subuh & tahajjud, mandi, sarapan, kegiatan sekolah/pondok dan lainnya.<br>
+            <strong>Siang:</strong> Sedekah / refleksi diri, sholat dzuhur & ashar ,it,dan lainnya.<br>
+            <strong>Sore:</strong> Piketan, bermain, interaksi sosial,piket, hiburan dan lainnya.<br>
+            <strong>Malam:</strong> Makan, sholat maghrib dan Shalat isya, belajar, istirahat dan lainnya.
+            <br><br>
+            Masa ini mengajarkan saya kedewasaan, kebersamaan, kerja sama, tanggung jawab sosial, serta empati kepada teman dan lingkungan.
+            </p>
+            <div class="tags"><span>Edukasi</span><span>Menghafal & Setoran</span><span>Komunitas</span><span>YouTube</span><span>AI</span><span>Pengembangan Diri</span></div>
+        </div>
+    </div>
+</div>
+</section>
+<style>
+  .journey {
+    padding: 60px 0;
+    font-family: 'Inter', sans-serif;
+    color: #111;
+    text-align: center;
+}
+
+.journey h2 {
+    font-size: 2.7rem;
+    margin-bottom: 60px;
+    font-weight: 800;
+}
+
+.timeline {
+    width: 80%;
+    margin: auto;
+    position: relative;
+    padding: 20px;
+}
+
+.timeline:before {
+    content: "";
+    position: absolute;
+    width: 3px;
+    background: #e5e7eb;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+}
+
+.timeline-item {
+    width: 44%;
+    display: flex;
+    margin-bottom: 70px;
+}
+
+.timeline-item.right { 
+    justify-content: flex-end; 
+    margin-right: -10px; 
+}
+
+.timeline-item.left { 
+    justify-content: flex-start; 
+    margin-left: -10px;
+}
+
+.content {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px;
+    width: 100%;
+    box-shadow: 0 4px 22px rgba(0,0,0,0.06);
+    transition: .28s ease;
+}
+
+.content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 38px rgba(0,0,0,0.08);
+}
+
+.year {
+    font-size: .9rem;
+    font-weight: 700;
+    opacity: .9;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.green { color: #22c55e; }
+.blue { color: #0284c7; }
+.purple { color: #7c3aed; }
+.orange { color: #ea580c; }
+
+.tags {
+    margin-top: 14px;
+}
+
+.tags span {
+    background: #f1f5f9;
+    color: #334155;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: .8rem;
+    margin-right: 5px;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 36px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: -15px;
+    font-weight: 600;
+    color: #555;
+}
+
+</style>
+  <div class="wrap">
+    <h1>Perjalanan Sekolah Saya</h1>
+    <p class="lead">Ringkasan pengalaman pendidikan & rutinitas yang membentuk saya — disusun rapi dengan garis waktu vertikal.</p>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-line" aria-hidden="true"></div>
+      <div class="timeline-progress" id="timelineProgress" aria-hidden="true"></div>
+
+      <!-- ITEM 1 -->
+      <div class="item right">
+        <div class="card" data-depth="0.06">
+          <span class="year">2011 - 2014</span>
+          <h4>Masa PAUD / TK / TPA — Belajar Sejak Kecil</h4>
+          <p>
+Pada masa ini saya belajar membaca, menulis, menjaga adik, dan mengenal rutinitas dasar. Aktif berolahraga dan mengikuti aktivitas pendidikan dasar.
+          
+Contoh rutinitas harian:
+Pagi: Bangun, sholat, mandi, sarapan, berangkat sekolah.
+Siang: Makan siang, beribadah, bermain/olahraga ringan.
+Sore: Waktu keluarga & istirahat.
+          </p>
+          <div class="tags"><span class="tag">TK/PAUD/TPA</span><span class="tag">Mengenal Belajar</span><span class="tag">Sholat</span></div>
+        </div>
+        <div class="point" style="top:62px;" aria-hidden="true">
+          <!-- icon: child / book -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19h16"></path>
+            <path d="M6 7v6"></path>
+            <path d="M18 7v6"></path>
+            <path d="M12 3v4"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="item left">
+        <div class="card" data-depth="0.045">
+          <span class="year">2014 - 2020</span>
+          <h4>Masa SD — Menumbuhkan Karakter</h4>
+          <p>
+Di SD saya belajar nilai berbagi, sedekah, kesabaran, menghadapi tantangan (termasuk bullying), dan terus berkembang lewat menghafal, membaca, serta menulis.
+
+Rutinitas:
+Pagi - sholat subuh, mandi, sarapan, berangkat sekolah.
+Siang - makan siang, olahraga, sholat dzuhur & ashar.
+Malam - makan bersama keluarga, beribadah, belajar, istirahat.
+          </p>
+          <div class="tags"><span class="tag">Edukasi</span><span class="tag">Kemandirian</span><span class="tag">Menghafal</span><span class="tag">Pengembangan Diri</span></div>
+        </div>
+        <div class="point" style="top:210px;" aria-hidden="true">
+          <!-- icon: school -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="item right">
+        <div class="card" data-depth="0.05">
+          <span class="year">2021 - 2023</span>
+          <h4>Masa SMP — Menemukan Minat & Kemandirian</h4>
+          <p>
+SMP adalah fase menemukan ketertarikan (termasuk IT) dan mengikuti ekstrakurikuler seperti pencak silat. Saya terus belajar ketahanan mental, disiplin, dan tanggung jawab.
+
+Rutinitas: Pagi-sholat subuh & berangkat sekolah; Siang-kegiatan pendidikan & sholat; Sore-olahraga; Malam-belajar & istirahat.
+          </p>
+          <div class="tags"><span class="tag">Edukasi</span><span class="tag">IT</span><span class="tag">Pencak Silat</span><span class="tag">Disiplin</span></div>
+        </div>
+        <div class="point" style="top:360px;" aria-hidden="true">
+          <!-- icon: code / interest -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 18l6-6-6-6"></path>
+            <path d="M8 6L2 12l6 6"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ITEM 4 -->
+      <div class="item left">
+        <div class="card" data-depth="0.03">
+          <span class="year">2024 - 2025</span>
+          <h4>Masa SMA / Pondok Beasiswa — Pendewasaan</h4>
+          <p>
+Di pondok beasiswa saya belajar agama & akademik bersamaan, memperdalam IT, mengenal platform digital (YouTube, TikTok), dan memperkuat rasa tanggung jawab sosial.
+
+Rutinitas: Pagi - tahajjud & sholat subuh, aktivitas pondok; Siang - refleksi & ibadah; Sore - piket & interaksi; Malam - belajar & istirahat.
+          </p>
+          <div class="tags"><span class="tag">Edukasi</span><span class="tag">Menghafal</span><span class="tag">Komunitas</span><span class="tag">YouTube</span><span class="tag">AI</span></div>
+        </div>
+        <div class="point" style="top:510px;" aria-hidden="true">
+          <!-- icon: heart / share -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 22l8.8-9.6a5.5 5.5 0 0 0 0-7.8z"></path>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  // Scroll reveal using IntersectionObserver
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('in-view');
+      }
+    });
+  }, {threshold: 0.15});
+  cards.forEach(c => io.observe(c));
+
+  // Timeline progress fill
+  const timeline = document.getElementById('timeline');
+  const progress = document.getElementById('timelineProgress');
+
+  function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+
+  function updateProgress(){
+    const rect = timeline.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const total = rect.height + vh;
+    const scrolled = clamp((vh - rect.top) / total, 0, 1);
+    progress.style.height = (scrolled * 100) + '%';
+  }
+
+  // Parallax subtle effect
+  function updateParallax(){
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    document.querySelectorAll('.card').forEach(card=>{
+      const rect = card.getBoundingClientRect();
+      const depth = parseFloat(card.dataset.depth || '0.04');
+      const dist = (rect.top + rect.height/2) - (vh/2);
+      const move = clamp(dist / vh * -1, -1, 1) * depth * 80;
+      // only apply when not yet in-view to avoid jumping
+      if(!card.classList.contains('in-view')){
+        card.style.transform = `translateY(${move}px)`;
+      } else {
+        card.style.transform = 'translateY(0)';
+      }
+    });
+  }
+
+  // throttle via rAF
+  let ticking = false;
+  function onScroll(){
+    if(!ticking){
+      window.requestAnimationFrame(()=>{ updateProgress(); updateParallax(); ticking = false; });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', ()=>{ updateProgress(); updateParallax(); }, {passive:true});
+
+  // init
+  updateProgress();
+  updateParallax();
+  window.addEventListener('load', ()=>{ cards.forEach(c=>{
+    const r = c.getBoundingClientRect();
+    if(r.top < (window.innerHeight || 800)) c.classList.add('in-view');
+  })});
+</script>
+</body>
+</html>

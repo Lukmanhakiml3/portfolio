@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catatan Belajar Ruangguru</title>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+  /* ===== Global ===== */
+  body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: radial-gradient(circle at top,#1d0039,#03040a);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    animation: fadein 0.6s ease;
+  }
+
+  @keyframes fadein {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* ===== Lock Screen ===== */
+  #aksesBox {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(123,0,255,0.3);
+  }
+
+  #aksesInput {
+    padding: 12px;
+    width: 280px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    outline: none;
+    margin-bottom: 12px;
+  }
+
+  #aksesBox button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: linear-gradient(45deg,#7700ff,#c066ff);
+    color: #fff;
+    transition: 0.25s ease;
+  }
+
+  #aksesBox button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+
+  /* ===== Container ===== */
+  .container {
+    width: 92%;
+    max-width: 850px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 0 20px rgba(123,0,255,0.3);
+    animation: muncul 0.5s ease;
+    display: none; /* tampil setelah unlock */
+  }
+
+  @keyframes muncul { from {scale:0.95;} to {scale:1;} }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: 800;
+    text-shadow: 0 0 8px #8a2be2;
+  }
+
+  h3 {
+    text-align: center;
+    margin-top: 25px;
+    opacity: 0.8;
+  }
+
+  /* ===== Inputs & Textarea ===== */
+  input[type="date"], textarea {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    outline: none;
+    transition: 0.3s ease;
+  }
+
+  input[type="date"] {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  input[type="date"]:focus { border-color: cyan; box-shadow: 0 0 12px cyan; }
+  textarea { width: 100%; min-height: 220px; box-shadow: inset 0 0 10px rgba(255,255,255,0.08); }
+  textarea:focus { border-color: #b45eff; box-shadow: 0 0 12px #b45eff; }
+
+  /* ===== List Catatan ===== */
+  .listCatatan {
+    margin-top: 15px;
+    max-height: 220px;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .itemCatatan {
+    padding: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: 0.25s ease;
+  }
+
+  .itemCatatan:hover {
+    background: rgba(123,0,255,0.25);
+    transform: translateX(4px);
+  }
+
+  /* ===== Buttons ===== */
+  .btn-area {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  button, .yt-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.25s ease;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  button:hover, .yt-btn:hover { transform: scale(1.08); filter: brightness(1.15); }
+
+  .btn-new    { background: linear-gradient(45deg,#7700ff,#c066ff); color: #fff; }
+  .save-btn   { background: linear-gradient(45deg,#00ffae,#66ffd8); color: #000; }
+  .copy-btn   { background: linear-gradient(45deg,#4ebeff,#6ed2ff); color: #000; }
+  .delete-btn { background: linear-gradient(45deg,#ff1313,#fd6767); color: #fff; }
+  .yt-btn     { background: linear-gradient(45deg,#ff0000,#ff4d4d); color:white; }
+
+</style>
+</head>
+<body>
+
+<!-- ===== Lock Screen ===== -->
+<div id="aksesBox">
+  <h2>🔒 Halaman ini terkunci</h2>
+  <p>Masukkan kode akses:</p>
+  <input type="text" id="aksesInput" placeholder="Kode akses rahasia">
+  <br>
+  <button onclick="cekAkses()">Submit</button>
+</div>
+
+<!-- ===== Main Container ===== -->
+<div class="container">
+  <h2>📖 Catatan Belajar Saya</h2>
+  <a class="yt-btn" href="https://www.youtube.com/channel/UCmHYW5RB6Ku00PuaYD783Rw" target="_blank">▶️ YouTube Channel Saya</a>
+
+  <br><br>
+  <label><b>Tanggal belajar:</b></label><br>
+  <input type="date" id="tanggalCatatan">
+
+  <textarea id="noteInput" placeholder="Tulis hasil belajar di sini... ✍️"></textarea>
+
+  <div class="btn-area">
+    <button class="btn-new" onclick="catatanBaru()">🆕 Catatan Baru</button>
+    <button class="save-btn" onclick="saveCatatan()">💾 Simpan</button>
+    <button class="copy-btn" onclick="copyText()">📋 Salin</button>
+    <button class="delete-btn" onclick="hapusCatatan()">🗑 Hapus</button>
+  </div>
+
+  <h3>🗂 Daftar Catatan</h3>
+  <div class="listCatatan" id="listCatatan"></div>
+</div>
+
+<script>
+/* ===== Lock Screen Function ===== */
+function cekAkses(){
+  let val = document.getElementById("aksesInput").value.trim();
+  if(val === "https://www.youtube.com/channel/UCmHYW5RB6Ku00PuaYD783Rw"){
+    document.getElementById("aksesBox").style.display = "none";
+    document.querySelector(".container").style.display = "block";
+  } else {
+    alert("❌ Kode salah");
+  }
+}
+
+/* ===== Catatan App Script ===== */
+const textarea = document.getElementById("noteInput");
+const tanggal = document.getElementById("tanggalCatatan");
+const listCatatan = document.getElementById("listCatatan");
+let semua = JSON.parse(localStorage.getItem("catatanBelajarRG") || "{}");
+
+// Tambah search box
+let searchBox = document.createElement("input");
+searchBox.type = "text";
+searchBox.id = "searchInput";
+searchBox.placeholder = "🔍 Cari kata dalam catatan...";
+searchBox.style = `
+  width:100%;
+  margin:10px 0;
+  padding:10px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+  color:white;
+  font-size:14px;
+  outline:none;
+`;
+listCatatan.parentNode.insertBefore(searchBox, listCatatan);
+searchBox.addEventListener("input", cariCatatan);
+
+function renderList(filter = ""){
+  listCatatan.innerHTML = "";
+  let kunciTanggal = Object.keys(semua).sort().reverse();
+  kunciTanggal.forEach(tgl => {
+    let isiCatatan = semua[tgl].toLowerCase();
+    if(filter === "" || isiCatatan.includes(filter.toLowerCase())){
+      let div = document.createElement("div");
+      div.className = "itemCatatan";
+      div.textContent = `📌 ${tgl}`;
+      div.onclick = () => {
+        tanggal.value = tgl;
+        textarea.value = semua[tgl];
+        highlightSearch();
+      };
+      listCatatan.appendChild(div);
+    }
+  });
+}
+renderList();
+
+function cariCatatan(){
+  renderList(searchBox.value.trim());
+}
+
+function highlightSearch(){
+  let cari = searchBox.value.trim();
+  if(!cari) return;
+  textarea.value = textarea.value.replace(new RegExp(cari, "gi"), match => `【${match}】`);
+}
+
+function saveCatatan(){
+  if(!tanggal.value){ alert("Isi tanggal dulu ya 👍"); return; }
+  semua[tanggal.value] = textarea.value;
+  localStorage.setItem("catatanBelajarRG", JSON.stringify(semua));
+  renderList();
+  alert("✔ Catatan berhasil disimpan!");
+}
+
+function copyText(){
+  textarea.select();
+  document.execCommand("copy");
+  alert("📋 Catatan disalin!");
+}
+
+function hapusCatatan(){
+  if(!tanggal.value){ alert("Pilih tanggal catatan yang akan dihapus!"); return; }
+  if(!(tanggal.value in semua)){ alert("Catatan untuk tanggal ini belum disimpan."); return; }
+  if(confirm(`❗ Yakin ingin menghapus catatan tanggal ${tanggal.value}?`)){
+    delete semua[tanggal.value];
+    localStorage.setItem("catatanBelajarRG", JSON.stringify(semua));
+    textarea.value = ""; tanggal.value = "";
+    renderList();
+    alert("🗑 Catatan berhasil dihapus!");
+  }
+}
+
+function catatanBaru(){ textarea.value=""; tanggal.value=""; textarea.focus(); }
+</script>
+
+</body>
+</html>

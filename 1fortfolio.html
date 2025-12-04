@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Lukman Hakim (@BosLuki)</title>
+  <meta name="description" content="Portfolio Lukman Hakim — Santri & Calon Web Developer. Proyek, kontak, dan link YouTube @BosLuki." />
+  <meta property="og:title" content="Portfolio — Lukman Hakim (@BosLuki)" />
+  <meta property="og:description" content="Portfolio Lukman Hakim — Santri & Calon Web Developer. Proyek, kontak, dan link YouTube @BosLuki." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230d6efd'/%3E%3Ctext x='50' y='60' font-size='50' text-anchor='middle' font-family='Poppins,Arial' fill='white'%3EM%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome (icons) -->
+  <script defer src="https://kit.fontawesome.com/a2d9d8f2c8.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:rgba(255,255,255,0.65); --text:#e6eef8; --accent:#4a8bff; --glass:rgba(255,255,255,0.04);
+      --radius:14px; --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto; background:linear-gradient(180deg,#020318 0%,#07102a 100%); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+
+    /* Layout container */
+    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+
+    /* NAVBAR */
+    nav.top{position:sticky;top:12px;z-index:50;margin:12px 0;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));backdrop-filter:blur(6px);border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#7fc0ff);font-weight:700;color:white}
+    .logo img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+    .brand .who{line-height:1}
+    .brand .who .name{font-weight:700}
+    .brand .who .role{font-size:12px;color:var(--muted)}
+
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .navlinks{display:flex;gap:10px;align-items:center}
+    .navlinks a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-weight:600}
+    .navlinks a:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+    .btn{padding:10px 14px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#7fc0ff);color:#07213b}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
+
+    .social{display:flex;gap:10px;font-size:18px}
+    .social a{color:var(--muted)}
+
+    /* Mobile menu */
+    .hamburger{display:none;background:transparent;border:0;color:var(--muted);font-size:22px}
+    @media(max-width:900px){.navlinks{display:none}.hamburger{display:block}}
+
+    /* HERO */
+    .hero{padding:36px 0;display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center}
+    .hero h1{font-size:40px;margin:0;line-height:1.03}
+    .hero p{margin:12px 0 18px;color:var(--muted);max-width:56ch}
+    .hero .actions{display:flex;gap:12px}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .profile-pic{width:120px;height:120px;border-radius:16px;object-fit:cover;display:block;margin:0 auto;box-shadow:0 8px 30px rgba(5,10,30,0.6)}
+    .profile-info{text-align:center;margin-top:12px}
+    .profile-info h3{margin:8px 0 2px}
+    .profile-info p{margin:0;color:var(--muted)}
+
+    /* PROJECTS */
+    h2.section{font-size:26px;margin:34px 0 10px}
+    .underline{height:6px;width:96px;background:var(--accent);border-radius:8px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
+    @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+
+    .project{border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));display:flex;flex-direction:column;transition:transform .28s ease, box-shadow .28s ease}
+    .project:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(8,14,30,0.6)}
+    .thumb{height:160px;background-size:cover;background-position:center}
+    .proj-body{padding:14px;display:flex;flex-direction:column;gap:10px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:13px;padding:6px 10px;border-radius:999px;background:rgba(79,70,229,0.12);color:var(--accent);font-weight:700}
+    .proj-body h3{margin:0}
+    .meta{color:var(--muted);font-size:14px;flex:1}
+    .proj-actions{display:flex;gap:8px}
+
+    /* CONTACT & FOOTER */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+    @media(max-width:800px){.contact-grid{grid-template-columns:1fr}}
+
+    footer{margin-top:40px;padding:28px;border-radius:12px;background:linear-gradient(180deg,#040615 0%,#05102a 100%);color:var(--muted)}
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* Accessible focus states */
+    a:focus, button:focus{outline:3px solid rgba(74,139,255,0.16);outline-offset:3px}
+
+  </style>
+<style>
+html[data-theme='dark']{
+  --bg:#0b0f14; --fg:#f1f1f1; --card:#141a21; --accent:#00e5ff;
+}
+html[data-theme='light']{
+  --bg:#ffffff; --fg:#111; --card:#f3f3f3; --accent:#0088ff;
+}
+body{
+  background:var(--bg); color:var(--fg);
+  transition:background 0.4s ease,color 0.4s ease;
+}
+.card,section{
+  background:var(--card);
+  transition:background 0.4s ease,transform 0.3s ease;
+}
+.card:hover{
+  transform:translateY(-4px);
+}
+/* Parallax background */
+#parallax-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
+  background:radial-gradient(circle at 50% 20%,rgba(0,229,255,0.15),transparent 40%),
+             radial-gradient(circle at 80% 80%,rgba(0,160,255,0.15),transparent 50%),
+             linear-gradient(120deg,var(--bg),var(--bg));
+  transition:opacity .4s ease;
+}
+</style>
+</head>
+<body>
+<div id="parallax-bg"></div>
+    <button id="theme-toggle" aria-label="Toggle theme" style="position:fixed;right:1rem;top:1rem;z-index:999;padding:8px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:600;">🌙</button>
+  <div class="container">
+    <nav class="top" role="navigation" aria-label="Utama">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><img src="logoku.jpg" alt="Logo Lukman" onerror="this.style.display='block';this.parentElement.textContent='LH'"/></div>
+        <div class="who">
+          <div class="name">Lukman Hakim</div>
+          <div class="role">Santri • Calon Web Developer</div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="navlinks" role="menubar">
+          <a href="#home" role="menuitem">Home</a>
+          <a href="#about" role="menuitem">Tentang</a>
+          <a href="#projects" role="menuitem">Proyek</a>
+          <a href="#contact" role="menuitem">Kontak</a>
+          <a href="#guestbook" role="menuitem">Buku Tamu</a>
+        </div>
+
+        <div class="social" aria-hidden="false">
+          <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://youtube.com/@BosLuki" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <button class="btn btn-primary" onclick="scrollToSection('contact')">Hubungi</button>
+        <button class="hamburger" aria-label="Buka menu" onclick="toggleMobile()">☰</button>
+      </div>
+    </nav>
+
+    <main>
+      <section id="home" class="hero">
+        <div>
+          <h1 class="reveal">Halo — Saya <span style="color:var(--accent)">Lukman Hakim</span><br><small style="font-weight:600;color:var(--muted)">Seorang siswa yang bersemangat memecahkan masalah lewat kode</small></h1>
+          <p class="reveal">Selamat datang di portofolio saya. Di sini saya mengumpulkan proyek-proyek pembelajaran, demo, dan sumber yang saya buat sambil belajar pengembangan web dan software.</p>
+
+          <div class="actions reveal">
+            <button class="btn btn-primary" onclick="scrollToSection('projects')">Lihat Proyek</button>
+            <button class="btn btn-ghost" id="themeToggle">Toggle Tema</button>
+          </div>
+        </div>
+
+        <aside class="card reveal">
+          <img class="profile-pic" src="belajar.jpg" alt="Foto Lukman" onerror="this.src='frofilku.png'" loading="lazy">
+          <div class="profile-info">
+            <h3>Lukman Hakim</h3>
+            <p class="muted">Calon Web Developer • Santri HSI Boarding School</p>
+            <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
+              <a class="btn btn-ghost" href="https://github.com/Lukmanhakiml3" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn btn-ghost" href="https://www.youtube.com/@BosLuki" target="_blank" rel="noopener">YouTube</a>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <h2 class="section">Tentang Saya</h2>
+        <div class="underline"></div>
+        <p class="reveal">Sejak pertama kali mencoba <code>print("Hello, World!")</code> di Python, saya tertarik pada logika dan kreativitas yang terlibat saat membuat program. Saat ini fokus saya adalah pengembangan web: UI/UX, JavaScript, dan sedikit backend dengan Python/Flask.</p>
+
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <img src="frofilku.png" alt="Foto profil kecil" style="width:84px;height:84px;border-radius:12px;object-fit:cover;box-shadow:0 8px 20px rgba(2,6,23,0.6)">
+          <div>
+            <p class="muted">Mulai membuat konten YouTube sejak 2022 untuk belajar dan berbagi.</p>
+            <div style="margin-top:8px" class="social">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-tiktok"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 class="section">Proyek Unggulan</h2>
+        <div class="underline"></div>
+
+        <div class="grid" id="projectsGrid">
+          <!-- Project card (duplicate as needed) -->
+
+          <article class="project reveal">
+            <div class="thumb" style="background-image:url('bot.jpg')" role="img" aria-label="Bot Pengingat"></div>
+            <div class="proj-body">
+              <div class="tags"><span class="tag">Python</span><span class="tag">Terminal</span></div>
+              <h3>Bot Pengingat Tugas</h3>
+              <div class="meta">Bot konsol dengan scheduler untuk mengingatkan tugas harian—latihan manipulasi waktu dan logika.</div>
+              <div class="proj-actions">
+                <a class="btn btn-primary" href="https://github.com/Lukmanhakiml3/Bot-pengingat.tugas" target="_blank" rel="noopener">Lihat</a>
+                <button class="btn btn-ghost" onclick="openInNewTab('https://github.com/Lukmanhakiml3')">Sumber</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="thumb" style="background-image:url('kalkulator.png')" role="img" aria-label="Calculator"></div>
+            <div class="proj-body">
+              <div class="tags"><span class="tag">HTML</span><span class="tag">JS</span></div>
+              <h3>Calculator Ilmiah</h3>
+              <div class="meta">Kalkulator web interaktif dengan riwayat operasi.</div>
+              <div class="proj-actions">
+                <a class="btn btn-primary" href="https://github.com/Lukmanhakiml3/kalkulator.lukmanhakim/tree/main/kalkulator%20futuristik" target="_blank">Lihat</a>
+                <button class="btn btn-ghost" onclick="openInNewTab('https://www.numworks.com/calculator/apps/')">Aplikasi</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="thumb" style="background-image:url('cuaca.jpg')" role="img" aria-label="Aplikasi Cuaca"></div>
+            <div class="proj-body">
+              <div class="tags"><span class="tag">API</span><span class="tag">JS</span></div>
+              <h3>Aplikasi Cuaca</h3>
+              <div class="meta">Menarik data realtime dari API dan menampilkan prakiraan sederhana.</div>
+              <div class="proj-actions">
+                <a class="btn btn-primary" href="https://github.com/Lukmanhakiml3/cuacadanlainnya.com" target="_blank">Lihat</a>
+                <button class="btn btn-ghost" onclick="openInNewTab('https://open-meteo.com/')">API</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Add more cards... kept same structure as original for simplicity -->
+
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center;margin:18px 0 40px">
+          <button class="btn btn-primary" onclick="alert('Sebutkan proyek yang ingin dikemas, aku bantu buatkan ZIP atau repo.')">Minta ZIP</button>
+          <button class="btn btn-ghost" onclick="alert('Siap! Saya akan siapkan versi React/Next.js. Sebutkan preferensi (Tailwind / plain CSS).')">Versi React/Next.js</button>
+        </div>
+
+      </section>
+
+      <section id="contact">
+        <h2 class="section">Kontak</h2>
+        <div class="underline"></div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Ingin bekerja sama?</h3>
+            <p class="muted">Hubungi saya di WhatsApp atau kirim email. Saya responsif pada pesan profesional/kolaborasi.</p>
+            <p style="margin-top:8px"><strong>WA:</strong> <a href="https://wa.me/6285137535918" target="_blank" rel="noopener">+62 0851-3753-5918</a><br>
+            <strong>Email:</strong> <a href="mailto:lukman@example.com">lukman@example.com</a></p>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <a class="btn btn-primary" href="mailto:lukman@example.com">Kirim Email</a>
+              <a class="btn btn-ghost" href="https://wa.me/6285137535918" target="_blank">WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Buku Tamu</h3>
+            <p class="muted">Fitur buku tamu akan hadir. Sementara itu, tinggalkan pesan lewat email atau komentar di video YouTube.</p>
+            <a class="btn btn-ghost" href="#guestbook">Buka Buku Tamu</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="guestbook" style="margin-top:28px">
+        <h2 class="section">Buku Tamu</h2>
+        <div class="underline"></div>
+        <div class="card" style="margin-top:12px">
+          <p class="muted">Coming soon — ingin fitur buku tamu langsung di website? Balas dengan: "Mau buku tamu" dan aku akan buatkan form + penyimpanan sederhana (Google Sheets / Firebase).</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© 2025 Lukman Hakim • Santri HSI Boarding School</div>
+        <div class="muted">Built with ❤️ — @BosLuki YouTube</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Utilities
+    function openInNewTab(url){ window.open(url, '_blank', 'noopener'); }
+    function scrollToSection(id){ const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}) }
+    function toggleMobile(){ const nl = document.querySelector('.navlinks'); nl.style.display = (nl.style.display==='flex') ? '' : 'flex'; }
+
+    // Theme toggle with localStorage (simple invert simulate)
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersLight = localStorage.getItem('site-theme');
+    if(prefersLight === 'light'){ document.documentElement.style.setProperty('--bg','#f7fafc'); document.documentElement.style.setProperty('--text','#0f1724'); }
+    themeToggle && themeToggle.addEventListener('click', ()=>{
+      const current = localStorage.getItem('site-theme');
+      if(current==='light'){
+        localStorage.removeItem('site-theme');
+        location.reload();
+      } else {
+        localStorage.setItem('site-theme','light');
+        // Quick visual change: lighten background + text
+        document.documentElement.style.setProperty('--bg','#f7fafc');
+        document.documentElement.style.setProperty('--text','#0f1724');
+        alert('Tema terang aktif — untuk menyimpan preferensi, muat ulang halaman.');
+      }
+    });
+
+    // Simple reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show') }); }, {threshold:0.12});
+    revealEls.forEach(el=>io.observe(el));
+
+  </script>
+<script>
+// Auto theme: follow system / time of day
+(function(){
+  const themeToggle=document.getElementById('theme-toggle');
+  const stored=localStorage.getItem('theme');
+  function apply(theme){
+    document.documentElement.setAttribute('data-theme', theme);
+    themeToggle.textContent = theme==='dark'?'☀️':'🌙';
+  }
+  if(stored){ apply(stored);} else {
+    const hrs=new Date().getHours();
+    const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(prefersDark || hrs>=18 || hrs<6){ apply('dark'); } else { apply('light'); }
+  }
+  themeToggle.addEventListener('click',()=>{
+    const current=document.documentElement.getAttribute('data-theme');
+    const next=current==='dark'?'light':'dark';
+    localStorage.setItem('theme', next);
+    apply(next);
+  });
+})();
+</script>
+</body>
+</html>
