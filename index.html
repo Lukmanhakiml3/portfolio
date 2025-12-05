@@ -358,6 +358,53 @@
 }
 
 </style>
+<script>
+// ---------------------
+// LAMPU MANUAL / AUTO
+// ---------------------
+const root = document.documentElement;
+const lampOn = document.getElementById("lamp-on");
+const lampOff = document.getElementById("lamp-off");
+const lampAuto = document.getElementById("lamp-auto");
+
+lampOn.addEventListener("click", () => {
+  root.setAttribute("data-lamp", "on");
+});
+
+lampOff.addEventListener("click", () => {
+  root.setAttribute("data-lamp", "off");
+});
+
+lampAuto.addEventListener("click", () => {
+  root.setAttribute("data-lamp", "auto");
+});
+
+
+// ---------------------
+// THEME TOGGLE
+// ---------------------
+const themeToggle = document.getElementById("theme-toggle");
+
+// fungsi toggle
+function toggleTheme() {
+  const current = root.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+
+  // Simpan ke localStorage agar tetap saat reload
+  localStorage.setItem("site-theme", next);
+}
+
+// tekan tombol
+themeToggle.addEventListener("click", toggleTheme);
+
+// saat load → cek localStorage
+const savedTheme = localStorage.getItem("site-theme");
+if (savedTheme) {
+  root.setAttribute("data-theme", savedTheme);
+}
+</script>
+
   <div class="container">
     <nav class="top" role="navigation" aria-label="Utama">
       <div class="brand">
