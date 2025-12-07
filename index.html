@@ -1555,10 +1555,10 @@ function countUp(element) {
 <section id="profile-about" style="padding:80px 20px; max-width:1200px; margin:0 auto; display:flex; gap:40px; flex-wrap:wrap; font-family:'Poppins', sans-serif; color:#f0f0f0; align-items:flex-start;">
 
   <!-- KIRI: Profil + Statistik -->
-  <div class="left-column" style="flex:1; min-width:300px; max-width:450px;">
+  <div class="left-column" style="flex:1; min-width:300px; max-width:450px; display:flex; flex-direction:column; justify-content:flex-start; padding-top:60px;">
     <aside class="card reveal profile-card">
       <div class="profile-pic-wrapper">
-        <img class="profile-pic" src="img/frofilku.png" alt="Foto Lukman" loading="lazy">
+        <img class="profile-pic" src="img/belajar.jpg" alt="Foto Lukman" loading="lazy">
         <div class="glow-ring"></div>
       </div>
 
@@ -1574,27 +1574,94 @@ function countUp(element) {
         </div>
       </div>
     </aside>
+<!-- ==========================
+     STAT GRID / STATISTICS
+========================== -->
+<section class="stats">
 
-    <!-- STAT GRID -->
-    <div class="stat-grid" style="margin-top:40px;">
-      <div class="stat-card reveal">
-        <i class="fa-solid fa-graduation-cap"></i>
-        <p data-target="10">0</p>
-        <small>Years of Learning Experience</small>
-        <div class="spark"></div>
-      </div>
-      <div class="stat-card reveal">
-        <i class="fa-solid fa-gift"></i>
-        <p data-target="300">0</p>
-        <small>Hampers</small>
-        <div class="spark"></div>
-      </div>
-      <div class="stat-card reveal">
-        <i class="fa-brands fa-youtube"></i>
-        <p data-target="279">0</p>
-        <small>Happy Subscribers</small>
-        <div class="spark"></div>
-      </div>
+  <!-- Card 1: Learning Experience -->
+  <div class="stat-card reveal">
+    <i class="fa-solid fa-graduation-cap"></i>
+    <p data-target="10">0</p>
+    <small>Years of Learning Experience</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 2: Hampers -->
+  <div class="stat-card reveal">
+    <i class="fa-solid fa-gift"></i>
+    <p data-target="300">0</p>
+    <small>Hampers</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 3: YouTube Subscribers -->
+  <div class="stat-card reveal">
+    <i class="fa-brands fa-youtube"></i>
+    <p data-target="279">0</p>
+    <small>Happy Subscribers</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 4: HTML Skill -->
+  <div class="stat-card reveal">
+    <i class="fa-brands fa-html5"></i>
+    <p data-target="95">0</p>
+    <small>HTML Skill</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 5: CSS Skill -->
+  <div class="stat-card reveal">
+    <i class="fa-brands fa-css3-alt"></i>
+    <p data-target="90">0</p>
+    <small>CSS Skill</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 6: JavaScript Skill -->
+  <div class="stat-card reveal">
+    <i class="fa-brands fa-js"></i>
+    <p data-target="85">0</p>
+    <small>JavaScript Skill</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 7: CapCut Editing -->
+  <div class="stat-card reveal">
+    <i class="fa-solid fa-film"></i>
+    <p data-target="89">0</p>
+    <small>CapCut Editing</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 8: Figma Design -->
+  <div class="stat-card reveal">
+    <i class="fa-brands fa-figma"></i>
+    <p data-target="80">0</p>
+    <small>Figma Design</small>
+    <div class="spark"></div>
+  </div>
+
+  <!-- Card 9: Canva Design (Custom SVG) -->
+  <div class="stat-card reveal">
+    <svg class="canva-icon" viewBox="0 0 48 48">
+      <defs>
+        <linearGradient id="canvaGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#00c4ff"/>
+          <stop offset="100%" stop-color="#845ef7"/>
+        </linearGradient>
+      </defs>
+      <circle cx="24" cy="24" r="20" fill="url(#canvaGrad)"/>
+      <text x="50%" y="55%" text-anchor="middle" fill="#fff" font-size="18" font-family="Arial" font-weight="bold">C</text>
+    </svg>
+    <p data-target="85">0</p>
+    <small>Canva Design</small>
+    <div class="spark"></div>
+  </div>
+
+</section>
+
     </div>
   </div>
 
@@ -1641,93 +1708,112 @@ function countUp(element) {
 </section>
 
 <style>
-  .profile-pic-wrapper {
+/* ===== KIRI & FOTO ===== */
+.profile-pic-wrapper {
   position: relative;
   width: 150px;
   height: 150px;
-  margin: 0 auto 15px auto;
-  top: -30px; /* geser ke atas */
+  margin: 0 auto 20px auto;
 }
 
-/* ===== ANIMASI CINEMATIC PREMIUM ===== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(50px) scale(0.92); filter: blur(6px); }
-  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+/* ===== STAT CARD ===== */
+:root {
+  --glass-bg: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.28);
+  --shadow-color: rgba(0, 255, 255, 0.2);
+  --primary-color: #00eaff;
 }
 
-@keyframes fadeLeft {
-  from { opacity: 0; transform: translateX(-60px) scale(0.92); filter: blur(6px); }
-  to   { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-@keyframes fadeRight {
-  from { opacity: 0; transform: translateX(60px) scale(0.92); filter: blur(6px); }
-  to   { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
-}
-
-/* ===== SCROLL REVEAL PRO MAX ===== */
-.reveal {
-  opacity: 0;
-  animation-duration: 1.3s;
-  animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(.15,.75,.35,1);
-  animation-timeline: view();
-  animation-range-start: 80px;
-  animation-range-end: 300px;
-}
-
-/* arah animasi */
-.up { animation-name: fadeUp; }
-.left { animation-name: fadeLeft; }
-.right { animation-name: fadeRight; }
-
-/* delay supaya muncul satu-satu */
-.delay1 { animation-delay: 0.1s; }
-.delay2 { animation-delay: 0.35s; }
-.delay3 { animation-delay: 0.55s; }
-.delay4 { animation-delay: 0.75s; }
-
-/* ===== TITTLE GLOW ELEGAN ===== */
-h3 {
+.stat-card {
   position: relative;
-  transition: 0.4s ease;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  padding: 20px 25px;
+  border-radius: 15px;
+  width: 150px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
-h3:hover {
-  text-shadow: 0 0 12px rgba(0,255,255,0.65),
-               0 0 25px rgba(0,255,255,0.35);
-  transform: translateY(-2px);
+.stat-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px var(--shadow-color);
 }
 
-/* ===== PARALLAX MICRO MOTION ===== */
-.reveal:hover {
-  transform: translateY(-4px) scale(1.02) !important;
-  transition: 0.35s ease;
+.stat-card i, .canva-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
 }
 
-/* ===== SHIMMER GLOW (HALUS BANGET) ===== */
-h3::after {
-  content: "";
+.canva-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-block;
+}
+
+.stat-card p {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.stat-card small {
+  display: block;
+  font-size: 0.85rem;
+  color: #d1e8f2;
+}
+
+/* SPARK EFFECT */
+.spark {
   position: absolute;
-  left: -60px;
-  top: 0;
-  width: 70px;
-  height: 100%;
-  background: linear-gradient(90deg,
-        transparent,
-        rgba(255,255,255,0.4),
-        transparent);
-  transform: skewX(-20deg);
-  opacity: 0;
-  transition: 0.6s;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.spark::before, .spark::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #00eaff;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: sparkAnim 1.5s infinite;
+}
+.spark::after { animation-delay: 0.75s; }
+@keyframes sparkAnim {
+  0% { transform: translate(0,0) scale(0.5); opacity: 0.8; }
+  50% { transform: translate(calc(-50px + 100*var(--r)), calc(-50px + 100*var(--r))) scale(1); opacity: 0.2; }
+  100% { transform: translate(0,0) scale(0.5); opacity: 0; }
 }
 
-h3:hover::after {
-  opacity: 1;
-  left: 120%;
-}
+/* REVEAL ANIMATION */
+.reveal { opacity:0; transform:translateY(30px); transition:0.8s ease; }
+.reveal.show { opacity:1; transform:translateY(0); }
 
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  .stat-card { width:120px; padding:15px 20px; }
+  .stat-card i, .canva-icon { font-size:2rem; }
+  .stat-card p { font-size:1.5rem; }
+}
 </style>
+
+
       <section id="projects reveal">
         <h2 class="section">Proyek Unggulan</h2>
         <div class="underline"></div>
