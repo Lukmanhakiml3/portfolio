@@ -1582,7 +1582,7 @@ function countUp(element) {
   <!-- Card 1: Learning Experience -->
   <div class="stat-card reveal">
     <i class="fa-solid fa-graduation-cap"></i>
-    <p data-target="10">0</p>
+    <p data-target="13">0</p>
     <small>Years of Learning Experience</small>
     <div class="spark"></div>
   </div>
@@ -1598,7 +1598,7 @@ function countUp(element) {
   <!-- Card 3: YouTube Subscribers -->
   <div class="stat-card reveal">
     <i class="fa-brands fa-youtube"></i>
-    <p data-target="279">0</p>
+    <p data-target="280">0</p>
     <small>Happy Subscribers</small>
     <div class="spark"></div>
   </div>
@@ -1606,7 +1606,7 @@ function countUp(element) {
   <!-- Card 4: HTML Skill -->
   <div class="stat-card reveal">
     <i class="fa-brands fa-html5"></i>
-    <p data-target="95">0</p>
+    <p data-target="94">0</p>
     <small>HTML Skill</small>
     <div class="spark"></div>
   </div>
@@ -1638,7 +1638,7 @@ function countUp(element) {
   <!-- Card 8: Figma Design -->
   <div class="stat-card reveal">
     <i class="fa-brands fa-figma"></i>
-    <p data-target="80">0</p>
+    <p data-target="84">0</p>
     <small>Figma Design</small>
     <div class="spark"></div>
   </div>
@@ -1661,50 +1661,218 @@ function countUp(element) {
   </div>
 
 </section>
+<style>
+  /* GRID RAPIH PREMIUM */
+.stats {
+  margin-top: 60px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+/* PREMIUM CARD */
+.stat-card {
+  background: #101010;
+  padding: 25px 15px;
+  border-radius: 14px;
+  border: 1px solid #1f1f1f;
+  text-align: center;
+
+  /* Premium Shadow */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.40);
+  transition: 0.28s ease;
+}
+
+/* Hover elegan */
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.55);
+}
+
+/* ICON */
+.stat-card i,
+.stat-card svg {
+  font-size: 35px;
+  margin-bottom: 12px;
+  color: #e3e3e3;
+}
+
+/* ANGKA */
+.stat-card p {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 8px 0;
+  color: #f7f7f7;
+}
+
+/* TEXT */
+.stat-card small {
+  font-size: .9rem;
+  color: #cfcfcf;
+}
+/* PAKSA HORIZONTAL */
+section.stats {
+  margin-top: 50px;
+  padding: 15px;
+
+  display: flex !important;       /* PAKSA horizontal */
+  flex-direction: row !important; /* baris */
+  flex-wrap: wrap !important;     /* biar rapi di HP */
+  justify-content: center !important;
+  gap: 20px;
+
+  max-width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CARD */
+section.stats .stat-card {
+  width: 210px !important;      /* kotak ukuran tetap */
+  background: #141414;
+  padding: 22px 12px;
+  border-radius: 12px;
+  border: 1px solid #1f1f1f;
+  text-align: center;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  transition: .25s ease;
+}
+
+/* ICON */
+section.stats .stat-card i,
+section.stats .stat-card svg {
+  font-size: 30px !important;
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+/* ANGKA */
+section.stats .stat-card p {
+  font-size: 1.8rem !important;
+  font-weight: 800;
+  margin: 5px 0;
+  color: #fff;
+}
+
+/* TEXT */
+section.stats .stat-card small {
+  color: #c7c7c7;
+  font-size: .88rem;
+}
+
+/* spark dimatikan */
+section.stats .spark {
+  display: none !important;
+}
+
+</style>
     </div>
   </div>
+<div class="about-container">
+  <div class="about-box">
 
-  <!-- KANAN: Tentang Saya -->
-  <div class="right-column" style="flex:1; min-width:350px; max-width:700px;">
-    <section id="about">
-      <h2 style="font-size:2.5rem; font-weight:700; background: linear-gradient(90deg, #ff7b00, #ffcc00); -webkit-background-clip: text; color:transparent; text-align:left;">Tentang Saya</h2>
-      <div style="width:80px; height:4px; background:#ffcc00; margin:12px 0 40px 0; border-radius:2px;"></div>
+    <h2 class="title">Tentang Saya</h2>
+    <div class="line"></div>
 
-      <h3 style="font-size:1.5rem; font-weight:700; color:#00eaff; margin-bottom:12px;">Profil Singkat</h3>
-      <p style="font-size:1.1rem; line-height:1.8; text-align:justify;">
-        <strong>Halo! Saya Lukman Hakim — seorang pelajar di HSI–IDN Boarding School yang bersemangat mendalami dunia teknologi dari masa awal perkembangan digital hingga era modern saat ini.</strong>
-      </p>
+    <h3 class="sub">Profil Singkat</h3>
+    <p class="text">
+      Halo! Saya <span class="highlight">Lukman Hakim</span> — seorang pelajar di HSI–IDN Boarding School yang bersemangat mendalami dunia <span class="highlight">teknologi</span> dari masa awal perkembangan digital hingga era modern saat ini.
+    </p>
 
-      <h3 style="font-size:1.5rem; font-weight:700; color:#00ff7b; margin-top:30px; margin-bottom:12px;">Skill & Tools</h3>
-      <p style="font-size:1.1rem; line-height:1.8; text-align:justify;">
-        Saya memprogram menggunakan <code style="color:#00eaff;font-weight:700;">HTML</code>, 
-        <code style="color:#ff7b00;font-weight:700;">CSS</code>, 
-        <code style="color:#ffee00;font-weight:700;">JavaScript</code>, dan tools lain di <em>Visual Studio Code</em>.
-      </p>
+    <h3 class="sub">Skill & Tools</h3>
+    <p class="text">
+      Saya memprogram menggunakan 
+      <code class="code html">HTML</code>, 
+      <code class="code css">CSS</code>, 
+      <code class="code js">JavaScript</code>, 
+      dan tools lain di <span class="highlight">Visual Studio Code</span>.
+    </p>
 
-      <h3 style="font-size:1.5rem; font-weight:700; color:#ffcc00; margin-top:30px; margin-bottom:12px;">Fokus Utama</h3>
-      <ul style="margin-top:10px; list-style-type:circle; padding-left:20px; line-height:1.7;">
-        <li>Belajar dan mengembangkan skill programming</li>
-        <li>Menghafal dan memperdalam ilmu yang bermanfaat</li>
-        <li>Mempelajari fundamental komputer dan IT</li>
-        <li>Mengembangkan proyek web, portofolio, dan aplikasi sederhana</li>
-        <li>Edit video dan konten digital</li>
-        <li>Refleksi diri dan meningkatkan kualitas personal</li>
-      </ul>
+    <h3 class="sub">Fokus Utama</h3>
+    <ul class="list">
+      <li><span class="highlight">Programming</span> & skill development</li>
+      <li>Menghafal dan memperdalam ilmu <span class="highlight">bermanfaat</span></li>
+      <li>Mempelajari <span class="highlight">fundamental komputer</span> & IT</li>
+      <li>Mengembangkan proyek <span class="highlight">web</span> & aplikasi</li>
+      <li>Edit <span class="highlight">video</span> & konten digital</li>
+      <li>Refleksi diri & meningkatkan <span class="highlight">kualitas personal</span></li>
+    </ul>
 
-      <h3 style="font-size:1.5rem; font-weight:700; color:#ff6f61; margin-top:30px; margin-bottom:12px;">Capaianku</h3>
-      <ul style="margin-top:10px; list-style-type:square; padding-left:20px; line-height:1.7;">
-        <li>Menghafal juz 30–26</li>
-        <li>Belajar coding sambil memahami HTML, CSS, JavaScript, dan lainnya</li>
-        <li>Menghafal 5 Kitab</li>
-        <li>Belajar di Ruang Guru sambil menulis dan membuat video</li>
-        <li>Mempelajari Bahasa Inggris semaksimal mungkin untuk nilai bagus</li>
-        <li>Mengikuti kegiatan yang diselenggarakan di Pondok</li>
-      </ul>
-    </section>
+    <h3 class="sub">Capaianku</h3>
+    <ul class="list">
+      <li>Menghafal <span class="highlight">juz 30–26</span></li>
+      <li>Belajar <span class="highlight">coding</span> HTML, CSS, JS</li>
+      <li>Menghafal <span class="highlight">5 Kitab</span></li>
+      <li>Belajar di <span class="highlight">Ruang Guru</span> sambil membuat video</li>
+      <li>Mempelajari <span class="highlight">Bahasa Inggris</span></li>
+      <li>Mengikuti kegiatan <span class="highlight">Pondok</span></li>
+    </ul>
+
   </div>
+</div>
+<style>
+  .about-box {
+  background: #111;
+  padding: 25px;
+  border-radius: 14px;
+  border: 1px solid #222;
+  max-width: 720px;
+  color: #eaeaea;
+  margin: 0 auto;
+}
 
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #eaeaea;
+}
+
+.line {
+  width: 70px;
+  height: 4px;
+  background: #ffcc00;
+  margin: 10px 0 25px 0;
+  border-radius: 2px;
+}
+
+.sub {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  color: #eaeaea;
+}
+
+.text {
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.code {
+  font-weight: 700;
+  color: #00eaff;
+}
+
+/* HIGHLIGHT GRADIENT MEWAH */
+.highlight {
+  background: linear-gradient(90deg, #ff7b00, #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.list {
+  margin-top: 8px;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+</style>
 </section>
 
 <style>
