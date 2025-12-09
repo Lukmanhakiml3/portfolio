@@ -2261,6 +2261,219 @@ section.stats .spark {
 </section>
 
 <style>
+
+  .timeline-item {
+  opacity: 0;
+  transform: translateY(80px) scale(0.95);
+  filter: blur(14px);
+  transition: 1s cubic-bezier(.19,1,.22,1);
+}
+
+.timeline-item.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Masuk dari kiri */
+.timeline-item.left.active {
+  animation: fromLeft 1.3s cubic-bezier(.19,1,.22,1);
+}
+
+@keyframes fromLeft {
+  0%   { transform: translateX(-100px) translateY(40px) scale(.95); opacity: 0; }
+  100% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+}
+
+/* Masuk dari kanan */
+.timeline-item.right.active {
+  animation: fromRight 1.3s cubic-bezier(.19,1,.22,1);
+}
+
+@keyframes fromRight {
+  0%   { transform: translateX(100px) translateY(40px) scale(.95); opacity: 0; }
+  100% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+}
+
+  .timeline-item .content {
+  background: rgba(255,255,255,0.13);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 25px;
+
+  /* Apple shine */
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.25),
+    inset 0 0 30px rgba(255,255,255,0.08);
+
+  /* Kombinasi floating + parallax */
+  animation: spaceFloating 8s ease-in-out infinite;
+}
+
+@keyframes spaceFloating {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+  .timeline-item .dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  background: white;
+  border: 3px solid #00eaff;
+  border-radius: 50%;
+
+  /* Apple smooth glow */
+  box-shadow:
+    0 0 6px rgba(0,255,255,0.7),
+    0 0 16px rgba(0,200,255,0.5);
+
+  /* Zero-gravity drifting (halus, elegan) */
+  animation: zeroGravity 6s ease-in-out infinite;
+
+  opacity: 0;
+  transition: 0.6s ease-out;
+}
+
+/* Dot aktif pas muncul */
+.timeline-item.active .dot {
+  opacity: 1;
+}
+
+/* Movement halus banget */
+@keyframes zeroGravity {
+  0%   { transform: translateX(-50%) translateY(0); }
+  50%  { transform: translateX(-50%) translateY(-7px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+  .timeline {
+  position: relative;
+  width: 100%;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+
+  /* Kombinasi Apple + Cyberpunk + Sci-fi */
+  background: linear-gradient(
+    180deg,
+    #00faff,
+    #00aaff,
+    #0055ff,
+    #7a00ff,
+    #ff00f5
+  );
+  box-shadow:
+    0 0 14px #00eaff,
+    0 0 40px #6f00ff80;
+}
+
+  /* ===== GARIS VERTIKAL FUTURISTIK ===== */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3.5px;
+  height: 100%;
+  background: linear-gradient(180deg, #00eaff80, #0077ff, #6f00ff80);
+  transform: translateX(-50%);
+  border-radius: 20px;
+  filter: drop-shadow(0 0 8px #00eaff);
+}
+
+/* ===== DOT FUTURISTIK ANTI HIDUP (ELEGAN) ===== */
+.timeline-item .dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
+  border: 3px solid #00c8ff;
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(0,200,255,0.6);
+  
+  /* Gerakan otomatis zero-gravity */
+  animation: zeroGravityDot 6s ease-in-out infinite;
+  opacity: 0;
+  transition: 0.6s ease-out;
+}
+
+/* Dot aktif saat item muncul */
+.timeline-item.active .dot {
+  opacity: 1;
+}
+
+/* Dot bergerak halus seperti melayang */
+@keyframes zeroGravityDot {
+  0%   { transform: translateX(-50%) translateY(0); }
+  50%  { transform: translateX(-50%) translateY(-8px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== KOTAK—EFEK SPACE DRIFT ===== */
+.timeline-item .content {
+  background: rgba(255,255,255,0.13);
+  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  border: 1.2px solid rgba(255,255,255,0.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  
+  /* Soft drifting */
+  animation: spaceDrift 8s ease-in-out infinite;
+}
+
+@keyframes spaceDrift {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+/* ===== MASUK DENGAN EFEK FILM SCI-FI ===== */
+.timeline-item {
+  opacity: 0;
+  transform: translateY(70px) scale(0.96);
+  filter: blur(10px);
+  transition: 0.9s ease-out;
+}
+
+.timeline-item.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* ===== MASUK KIRI & KANAN YANG SEKSI ===== */
+.timeline-item.left.active {
+  animation: enterLeft 1.3s cubic-bezier(.19,1,.22,1);
+}
+.timeline-item.right.active {
+  animation: enterRight 1.3s cubic-bezier(.19,1,.22,1);
+}
+
+@keyframes enterLeft {
+  0% { transform: translateX(-90px) translateY(50px) scale(.9); opacity: 0; }
+  100% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes enterRight {
+  0% { transform: translateX(90px) translateY(50px) scale(.9); opacity: 0; }
+  100% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+}
+
   /* ===== FIXED CLEAN VERSION ===== */
 
 :root {
@@ -2403,6 +2616,41 @@ section.stats .spark {
 }
 
 </style>
+<script>
+function timelineEffects() {
+  items.forEach((item, i) => {
+    const rect = item.getBoundingClientRect();
+
+    // Ketika masuk layar
+    if (rect.top < window.innerHeight * 0.8) {
+      item.classList.add('active');
+    }
+
+    // Parallax lembut
+    let offset = rect.top * -0.05;
+    item.style.transform = `translateY(${offset}px)`;
+  });
+}
+
+window.addEventListener('scroll', timelineEffects);
+timelineEffects();
+</script>
+<script>
+const items = document.querySelectorAll('.timeline-item');
+
+function animateTimeline() {
+  items.forEach(item => {
+    const rect = item.getBoundingClientRect();
+
+    if (rect.top < window.innerHeight * 0.75) {
+      item.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', animateTimeline);
+animateTimeline();
+</script>
 
 <script>
 function revealOnScroll() {
