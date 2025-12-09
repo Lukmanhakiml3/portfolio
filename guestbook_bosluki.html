@@ -1,208 +1,111 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buku Tamu @BosLuki</title>
-
+<title>Buku Tamu SUPREME ∞ MULTIVERSE @BosLuki</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(120deg, #05070a, #0d1117);
-  color: #e8f8ff;
-  margin: 0;
-  padding: 24px;
+:root {
+  --bg:#05070a; --text:#e8f8ff; --primary:#00f7ff;
+  --card:rgba(255,255,255,0.06); --border:rgba(0,255,240,0.14); --glow:0 0 12px #00f7ff;
 }
-
-/* ---------- FORM UI ---------- */
-#guestForm {
-  background: rgba(255,255,255,0.05);
-  padding: 22px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(16px);
-  animation: fadeIn 0.6s ease;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.07);
-  color: #fff;
-  transition: .25s;
-  font-size: 1rem;
-}
-
-input:focus, textarea:focus {
-  border: 1px solid #00ffe7;
-  box-shadow: 0 0 12px rgba(0,255,230,0.4);
-  outline: none;
-}
-
-/* ---------- BUTTON ---------- */
-button {
-  padding: 10px 14px;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: .25s;
-}
-
-#kirim {
-  background: #00ffea;
-  color: #00363a;
-}
-#kirim:hover {
-  transform: scale(1.06);
-  background:#16ffe0;
-}
-
-.hapus {
-  background:#ff003c;
-  color:#fff;
-}
-.hapus:hover {
-  transform: scale(1.08);
-  background:#ff275b;
-}
-
-/* ---------- TABEL UI ---------- */
-#tabel {
-  width: 100%;
-  font-size: 0.95rem;
-  margin-top: 14px;
-  border-collapse: collapse;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-#tabel th {
-  background: rgba(0, 255, 230, 0.12);
-  padding: 10px 8px;
-  font-weight: 700;
-  color:#0affec;
-  border-bottom: 1px solid rgba(255,255,255,0.14);
-  text-align: left;
-}
-
-#tabel td {
-  padding: 9px 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-#tabel tr {
-  transition: .25s ease;
-}
-
-#tabel tr:hover {
-  background: rgba(0, 255, 230, 0.06);
-  transform: scale(1.008);
-}
-
-/* ---------- ANIM ---------- */
-@keyframes fadeIn {
-  from { opacity:0; transform: translateY(12px); }
-  to { opacity:1; transform: translateY(0); }
-}
-
+body { font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); margin:0; padding:28px; transition:.4s; }
+h1 { text-align:center; font-size:2.8rem; font-weight:900; color:var(--primary); text-shadow:var(--glow); animation:float 3s infinite ease-in-out; }
+@keyframes float { 0%{transform:translateY(0);} 50%{transform:translateY(-8px);} 100%{transform:translateY(0);} }
+#guestForm { margin:auto; max-width:780px; background:var(--card); padding:30px; border-radius:18px; border:1px solid var(--border); backdrop-filter:blur(15px); box-shadow:0 0 20px var(--primary); animation:fade .7s ease; }
+@keyframes fade { from{opacity:0; transform:translateY(20px);} to{opacity:1;} }
+input,textarea { width:100%; padding:14px; margin:10px 0; border-radius:12px; border:1px solid var(--primary); background:rgba(255,255,255,0.07); color:var(--text); font-size:1rem; backdrop-filter: blur(4px);}
+button { padding:14px 20px; border:none; border-radius:12px; font-size:1.1rem; font-weight:700; cursor:pointer; transition:.3s; }
+#kirim { background:var(--primary); color:#000; }
+#kirim:hover { transform:scale(1.07); filter:brightness(1.2); }
+#tabel { width:100%; max-width:1200px; margin:auto; margin-top:35px; border-collapse:collapse; border:1px solid var(--border); background:rgba(255,255,255,0.05); border-radius:14px; overflow:hidden; }
+#tabel th { background:rgba(255,255,255,0.06); color:var(--primary); padding:14px; font-size:1rem; }
+#tabel td { padding:12px; border-bottom:1px solid rgba(255,255,255,0.05); }
+#tabel tr:hover td { background:rgba(255,255,255,0.06); }
+.hapus { background:#ff0033; color:white; border-radius:8px; padding:6px 12px; }
+.hapus:hover { transform:scale(1.12); }
+#themeSelect { width:260px; margin:20px auto; display:block; background:var(--card); border:1px solid var(--primary); padding:10px; color:var(--text); border-radius:12px; font-weight:600; text-align:center; }
+.theme-cyberpunk { --bg:#04000a; --primary:#00fff2; --card:rgba(0,255,220,0.08); --text:#dffcff; }
+.theme-galaxy { --bg:radial-gradient(circle,#1a0033,#000); --primary:#da00ff; --glow:0 0 20px #da00ff; }
+.theme-apple { --bg:#f4f4f4; --text:#000; --primary:#007aff; --card:rgba(255,255,255,0.7); }
+.theme-gold { --bg:#0b0b0b; --text:#fff7d1; --primary:#ffd700; --glow:0 0 18px #ffc400; }
+.theme-anime { --bg:#ffe6ff; --text:#5b1a73; --primary:#ff66cc; }
+.theme-gamer { --bg:#020202; --primary:#00ff44; --text:#cfffdf; }
+#search { display:block;margin:15px auto; max-width:420px; background:var(--card); border:1px solid var(--primary); padding:12px; border-radius:12px; color:var(--text); }
+img { border-radius:50%; }
 </style>
 </head>
 <body>
 
-<h2 style="text-align:center;margin-bottom:6px;font-weight:800;color:#00ffe7;">
-  📘 Buku Tamu BOSLUKI
-</h2>
-
-<p style="text-align:center;color:#9fdcf0;margin-bottom:22px;">
-  Isilah & dukungan terbaik untuk @BosLuki ✨dan HARAP MAKLUMI
-</p>
+<h1>📘 Buku Tamu SUPREME ∞ MULTIVERSE @BosLuki</h1>
+<select id="themeSelect">
+  <option value="">🌐 Pilih Tema Multiverse</option>
+  <option value="theme-cyberpunk">⚡ Cyberpunk Neon</option>
+  <option value="theme-galaxy">🌌 Galaxy Purple</option>
+  <option value="theme-apple">🍎 Apple Minimalist</option>
+  <option value="theme-gold">👑 Gold Royal</option>
+  <option value="theme-anime">🎀 Anime Pastel</option>
+  <option value="theme-gamer">🎮 Gamer RGB</option>
+</select>
 
 <form id="guestForm">
   <input type="text" id="nama" placeholder="Nama lengkap" required>
   <input type="text" id="instansi" placeholder="Instansi / Sekolah / Organisasi" required>
   <input type="email" id="email" placeholder="Email aktif" required>
-  <textarea id="pesan" placeholder="Pesan atau kesan Anda" required></textarea>
-  <button type="submit" id="kirim">KIRIM PESAN</button>
+  <textarea id="pesan" placeholder="Pesan Anda..." required></textarea>
+  <button id="kirim">KIRIM PESAN 🚀</button>
 </form>
 
-<hr style="margin:30px 0;border: 0.5px solid rgba(255,255,255,0.1);">
-
-<h3 style="color:#00ffe7;font-weight:700;">Riwayat Buku Tamu:</h3>
+<h2 style="text-align:center;color:var(--primary);margin-top:25px;">Riwayat Buku Tamu</h2>
+<input id="search" placeholder="🔍 Cari nama / instansi...">
 
 <table id="tabel">
-  <tr>
-    <th>No</th>
-    <th>Nama</th>
-    <th>Instansi</th>
-    <th>Email</th>
-    <th>Pesan</th>
-    <th>Tanggal</th>
-    <th>Aksi</th>
-  </tr>
+<tr><th>No</th><th>Avatar</th><th>Nama</th><th>Instansi</th><th>Email</th><th>Pesan</th><th>Analisa AI</th><th>Tanggal</th><th>Aksi</th></tr>
 </table>
 
 <script>
-let bukuTamu = JSON.parse(localStorage.getItem('bukutamu')) || [];
+function analyzeMessage(msg){
+  const positive=["baik","mantap","keren","top","hebat","luar biasa","support","bagus"];
+  const negative=["buruk","jelek","gak suka","kecewa","parah"];
+  let mood="Netral";
+  if(positive.some(w=>msg.toLowerCase().includes(w))) mood="Sangat Positif";
+  if(negative.some(w=>msg.toLowerCase().includes(w))) mood="Negatif";
+  const alienPattern = /[^\x00-\x7F]/g.test(msg) || msg.length % 7 === 0 || (msg.includes("###") && msg.length>30);
+  return { mood, alienDetected: alienPattern, classification: alienPattern?"⚠️ Possible Non-Human Entity":"✔ Human Pattern", intensity:(msg.length*Math.random()).toFixed(2)};
+}
 
-document.getElementById("guestForm").addEventListener("submit", function(e){
+document.getElementById("themeSelect").addEventListener("change",function(){ document.body.className=this.value; });
+
+let bukuTamu=JSON.parse(localStorage.getItem("bukutamu"))||[];
+
+document.getElementById("guestForm").addEventListener("submit",e=>{
   e.preventDefault();
-
-  let data = {
-    nama: document.getElementById("nama").value,
-    instansi: document.getElementById("instansi").value,
-    email: document.getElementById("email").value,
-    pesan: document.getElementById("pesan").value,
-    tanggal: new Date().toLocaleString()
-  };
-
+  let data={ nama:nama.value, instansi:instansi.value, email:email.value, pesan:pesan.value, tanggal:new Date().toLocaleString(), avatar:`https://api.dicebear.com/9.x/thumbs/svg?seed=${nama.value}`, analysis:analyzeMessage(pesan.value) };
   bukuTamu.push(data);
-  localStorage.setItem('bukutamu', JSON.stringify(bukuTamu));
-  renderTabel();
+  localStorage.setItem("bukutamu",JSON.stringify(bukuTamu));
+  render();
   e.target.reset();
 });
 
-function renderTabel(){
-  let tabel = document.getElementById("tabel");
-  tabel.innerHTML = `
-    <tr>
-      <th>No</th>
-      <th>Nama</th>
-      <th>Instansi</th>
-      <th>Email</th>
-      <th>Pesan</th>
-      <th>Tanggal</th>
-      <th>Aksi</th>
-    </tr>
-  `;
-
-  bukuTamu.forEach((data,i)=> {
-    let row = tabel.insertRow(-1);
-    row.style.animation = "fadeIn .4s ease";
-    row.innerHTML = `
-      <td>${i+1}</td>
-      <td>${data.nama}</td>
-      <td>${data.instansi}</td>
-      <td>${data.email}</td>
-      <td>"${data.pesan}"</td>
-      <td>${data.tanggal}</td>
-      <td><button class="hapus" onclick="hapus(${i})">✖</button></td>
-    `;
+function render(filter=""){
+  let tabel=document.getElementById("tabel");
+  tabel.innerHTML='<tr><th>No</th><th>Avatar</th><th>Nama</th><th>Instansi</th><th>Email</th><th>Pesan</th><th>Analisa AI</th><th>Tanggal</th><th>Aksi</th></tr>';
+  bukuTamu.filter(d=>d.nama.toLowerCase().includes(filter)||d.instansi.toLowerCase().includes(filter)).forEach((d,i)=>{
+    let row=tabel.insertRow(-1);
+    row.innerHTML=`<td>${i+1}</td><td><img src="${d.avatar}" width="42"></td><td>${d.nama}</td><td>${d.instansi}</td><td>${d.email}</td><td>${d.pesan}</td><td>Mood:<b>${d.analysis.mood}</b><br>Entity:<b>${d.analysis.classification}</b><br>Intensity:${d.analysis.intensity}</td><td>${d.tanggal}</td><td><button class="hapus" onclick="hapus(${i})">✖</button></td>`;
   });
 }
 
+search.addEventListener("input",()=>{ render(search.value.toLowerCase()); });
+
 function hapus(i){
-  bukuTamu.splice(i, 1);
-  localStorage.setItem('bukutamu', JSON.stringify(bukuTamu));
-  renderTabel();
+  let pass=prompt("Masukkan password admin:");
+  if(pass==="bosluki"){ bukuTamu.splice(i,1); localStorage.setItem("bukutamu",JSON.stringify(bukuTamu)); render(); }
+  else alert("Password salah!");
 }
 
-renderTabel();
+render();
 </script>
-
 </body>
 </html>
