@@ -1661,7 +1661,117 @@ function countUp(element) {
     <div class="spark"></div>
   </div>
 
+  <!-- Card 10: Learning Experience -->
+  <div class="stat-card reveal">
+    <i class="fa-solid fa-language"></i>
+    <p data-target="87">0</p>
+    <small>BAHASA ARAB</small>
+    <div class="spark"></div>
+  </div>
+
 </section>
+<style>
+  .stat-card {
+  position: relative;
+  width: 300px;                     /* besar */
+  padding: 45px;
+  border-radius: 28px;
+
+  /* ✨ Glassmorphism */
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  /* ✨ Multi-shadow premium */
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.25),
+    0 0 25px rgba(255, 215, 0, 0.4),    /* gold glow */
+    inset 0 0 10px rgba(255,255,255,0.2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  transition: all .4s ease;
+  overflow: hidden;
+}
+
+/* Hover ultimate */
+.stat-card:hover {
+  transform: translateY(-14px) scale(1.05);
+  box-shadow:
+    0 30px 70px rgba(0,0,0,0.35),
+    0 0 40px rgba(0, 255, 200, 0.5),    /* efek neon */
+    inset 0 0 20px rgba(255,255,255,0.3);
+}
+
+/* Ikon: besar + neon + gold outline */
+.stat-card i {
+  font-size: 85px;
+  color: #0ea5e9;                         /* biru utama */
+  text-shadow:
+    0 0 20px rgba(14,165,233,0.6),
+    0 5px 25px rgba(0,0,0,0.2),
+    0 0 15px rgba(255,215,0,0.4);         /* sentuhan gold */
+}
+
+/* Angka besar modern */
+.stat-card p {
+  font-size: 55px;
+  font-weight: 900;
+  margin: 0;
+  color: #0f172a;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 8px rgba(255,255,255,0.5),
+    0 3px 12px rgba(0,0,0,0.15);
+}
+
+/* Tulisan BAHASA ARAB */
+.stat-card small {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1e293b;
+  text-shadow: 0 0 6px rgba(255,255,255,0.6);
+}
+
+/* Glow dynamic (spark) */
+.spark {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle,
+      rgba(0,255,200,0.6),
+      rgba(0,255,200,0)
+    );
+  border-radius: 50%;
+  top: -40px;
+  right: -40px;
+  filter: blur(35px);
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+
+.stat-card:hover .spark {
+  opacity: 1;
+}
+
+/* Scroll reveal smooth */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: all .9s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
 <style>
   /* GRID RAPIH PREMIUM */
 .stats {
@@ -1804,14 +1914,15 @@ section.stats .spark {
       <li>Refleksi diri & meningkatkan <span class="highlight">kualitas personal</span></li>
     </ul>
 
-    <h3 class="sub">Capaianku</h3>
+    <h3 class="sub">Capaianku di Pondok dan di Rumah</h3>
     <ul class="list">
-      <li>Menghafal <span class="highlight">juz 30–26</span></li>
+      <li>Menghafal AL-QUR'AN <span class="highlight">juz 30–26</span></li>
       <li>Belajar <span class="highlight">coding</span> HTML, CSS, JS</li>
-      <li>Menghafal <span class="highlight">5 Kitab</span></li>
+      <li>Menghafal <span class="highlight">5 kitab yaitu Kitab duror,kitab aqidatuna,kitab nabiyyuna,kitab fathul 'aliy,dan,kitab ajjurrumiyyah</span></li>
+      <li>Belajar dan Menghafal <span class="highlight">3 Kitab Bahasa Arab yaitu kitab kitab silsilah arabiyah baina yadaik</span></li>
       <li>Belajar di <span class="highlight">Ruang Guru</span> sambil membuat video</li>
       <li>Mempelajari <span class="highlight">Bahasa Inggris</span></li>
-      <li>Mengikuti kegiatan <span class="highlight">Pondok</span></li>
+      <li>Mengikuti kegiatan dan melaksanakan <span class="highlight">di Pondok</span></li>
     </ul>
 
   </div>
